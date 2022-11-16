@@ -1,0 +1,24 @@
+﻿@using Eterna.Models
+@model Service
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<section id="services" class="services">
+    <div class="container">
+        <div class="row">
+
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="icon-box">
+                    <div class="icon" id="@Model.Id"><i class="bx @Model.Icon"></i></div>
+                    <h4> <a>@Model.Name</a></h4>
+                    <p>@Model.Title</p>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+</section><!-- End Services Section -->
+
