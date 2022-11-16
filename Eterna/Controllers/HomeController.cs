@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Eterna.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Eterna.Controllers
 {
@@ -6,7 +7,7 @@ namespace Eterna.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(Data.Services);
         }
         public IActionResult About()
         {
