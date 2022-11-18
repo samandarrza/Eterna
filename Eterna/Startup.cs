@@ -1,6 +1,8 @@
+using Eterna.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -15,6 +17,11 @@ namespace Eterna
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<EternaDbContext>(opt =>
+            {
+                opt.UseSqlServer("Server=DESKTOP-HO9CBPN\\SQLEXPRESS;Database=EternaDb; Trusted_Connection=TRUE");
+            }
+                );
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

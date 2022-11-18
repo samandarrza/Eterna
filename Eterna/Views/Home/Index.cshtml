@@ -1,9 +1,7 @@
-﻿@using Eterna.Models
-@model List<Service>
+﻿@model HomeViewModel
 @{
-    ViewData["Title"] = "Index";
+    int sliderCount = 1;
 }
-
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
@@ -13,38 +11,19 @@
 
             <div class="carousel-inner" role="listbox">
 
-                <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
-                    <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Eterna</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                @foreach (var item in Model.Sliders)
+                {
+                    <div class="carousel-item @(sliderCount == 1 ? "active" : "")" style="background: url(../assets/img/slide/@item.Img)">
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>@item.Title</span></h2>
+                                <p class="animate__animated animate__fadeInUp">@item.Desc</p>
+                                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
-                    <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-                    <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">Sequi ea <span>Dime Lara</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                    sliderCount++;
+                }
 
             </div>
 
@@ -66,27 +45,16 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="icon-box">
-                        <i class="bi bi-card-checklist"></i>
-                        <h3><a href="">Lorem Ipsum</a></h3>
-                        <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                @foreach (var feature in Model.Features)
+                {
+                    <div class="col-lg-4">
+                        <div class="icon-box">
+                            @Html.Raw(feature.Icon)
+                            <h3><a href="">@feature.Title</a></h3>
+                            <p>@feature.Desc</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="icon-box">
-                        <i class="bi bi-bar-chart"></i>
-                        <h3><a href="">Dolor Sitema</a></h3>
-                        <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="icon-box">
-                        <i class="bi bi-binoculars"></i>
-                        <h3><a href="">Sed ut perspiciatis</a></h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-                    </div>
-                </div>
+                }
             </div>
 
         </div>
@@ -125,7 +93,7 @@
         <div class="container">
 
             <div class="row">
-                @foreach (var item in Model)
+                @foreach (var item in Model.Services)
                 {
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <div class="icon-box">
